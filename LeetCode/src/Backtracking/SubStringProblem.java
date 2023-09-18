@@ -2,7 +2,7 @@ package Backtracking;
 
 import java.util.ArrayList;
 import java.util.List;
-
+//find all substring 
 public class SubStringProblem {
     public static void main(String[] args) {
         SubStringProblem sub = new SubStringProblem();
