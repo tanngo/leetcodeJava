@@ -11,23 +11,28 @@ public class TestClass {
         List<List<Integer>> ans = new ArrayList<List<Integer>>();
         List<Integer> subset = new ArrayList<Integer>();
         int []nums = new int[]{1,2,3};
-        List<Integer> numList = Arrays.stream(nums).boxed().collect(Collectors.toList());
-        List<Integer> numList2 = IntStream.of(nums).boxed().collect(Collectors.toList());
-        backtrack(ans, subset,numList,0);
+        backtrack(ans, subset, nums,0,0,3);
+
+//        List<Integer> numList = Arrays.stream(nums).boxed().collect(Collectors.toList());
+//        List<Integer> numList2 = IntStream.of(nums).boxed().collect(Collectors.toList());
+//        backtrack(ans, subset,numList,0);
 
     }
 
-    public static void backtrack(List<List<Integer>> ans, List<Integer>subset, List<Integer>nums, int start) {
-        if(start == nums.size()){
+    public static void backtrack(List<List<Integer>> ans, List<Integer>subset, int[]nums, int start, int total, int target) {
+        if(total == target){
             ans.add(new ArrayList<>(subset));
             return;
         }
-        subset.add(nums.get(start));
-        backtrack(ans,subset,nums,start+1);
-        //without eleements
-        subset.remove(nums.get(start));
-        backtrack(ans,subset,nums,start+1);    }
+        if(total> target || start >= nums.length){return;}
+        //with element at start
+        subset.add(nums[start]);
+        backtrack(ans,subset,nums,start+1,total+nums[start],target);
 
+        //remove element
 
+        subset.remove(subset.size()-1);
+        backtrack(ans,subset,nums,start+1,total,target);
+    }
 
 }

@@ -5,6 +5,9 @@ import Common.PrintUtils;
 import java.util.ArrayList;
 import java.util.List;
 
+//Given an array of positive integers arr[] and an integer x, The task is to find all unique combinations in arr[] where the sum is equal to x.
+//        The same repeated number may be chosen from arr[] an unlimited number of times. Elements in a combination (a1, a2, …, ak)
+//        must be printed in non-descending order. (ie, a1 <= a2 <= … <= ak). If there is no combination possible print “Empty”.
 public class CombinationSumProblem {
     public static void main(String[] args) {
         CombinationSumProblem problem = new CombinationSumProblem();
@@ -26,8 +29,7 @@ public class CombinationSumProblem {
         }
         if(start == candidates.length || total > target) return;
         subset.add(candidates[start]);
-        dfs(candidates,start,result,subset,total+candidates[start],target);
-
+        dfs(candidates,start+1,result,subset,total+candidates[start],target);
         subset.remove(subset.size() -1);
         dfs(candidates, start+1, result,subset, total,target);
     }
